@@ -137,7 +137,7 @@
               </transformers>
               <artifactSet>
               </artifactSet>
-              <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
+              <outputFile>${project.build.directory}/config-server.jar
               </outputFile>
             </configuration>
           </execution>

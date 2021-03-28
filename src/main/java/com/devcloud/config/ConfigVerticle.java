@@ -64,7 +64,7 @@ public class ConfigVerticle extends AbstractVerticle {
     router.errorHandler(500, routingContext -> log.error("Request error", routingContext.failure()));
 
     vertx.createHttpServer().requestHandler(router)
-      .listen(8888, http -> {
+      .listen(8080, http -> {
         if (http.succeeded()) {
           startPromise.complete();
           log.info("HTTP server started on port 8888");
