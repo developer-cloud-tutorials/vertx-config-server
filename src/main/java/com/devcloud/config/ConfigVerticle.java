@@ -32,7 +32,7 @@ public class ConfigVerticle extends AbstractVerticle {
     router.get("/configs/:application/:label").handler(routingContext -> {
       String application = routingContext.pathParam("application");
       String label = routingContext.pathParam("label");
-      ConfigStoreOptions git = new ConfigStoreOptions()
+      ConfigStoreOptions configStoreOptions = new ConfigStoreOptions()
         .setType("directory")
         .setConfig(new JsonObject()
           .put("path", "config-git")
@@ -52,7 +52,7 @@ public class ConfigVerticle extends AbstractVerticle {
                 .put("format", "yaml"))
           ));
 
-      ConfigRetriever.create(vertx, new ConfigRetrieverOptions().addStore(git).addStore(git))
+      ConfigRetriever.create(vertx, new ConfigRetrieverOptions().addStore(configStoreOptions))
         .getConfig()
         .onSuccess(entries -> routingContext.end(Json.encode(entries)))
         .onFailure(throwable -> {
